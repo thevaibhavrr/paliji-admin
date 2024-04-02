@@ -1,0 +1,32 @@
+.dashboard-container {
+    gap: 20px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .dashboard-card {
+    background-color: var(--gay-bg-color);
+    padding: 20px;
+    width: 300px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+  }
+  .dashboard-card:hover{
+    color: var(--main-white-color);
+    background: black;
+  }
+  
+  .dashboard-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .dashboard-card p {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,91 @@
+.all-orders-container {
+  padding: 40px;
+}
+.admin_add_product_button.selectedStatus {
+  background-color: black;
+}
+.admin_add_product_button.selectedStatus:hover {
+color: rgb(0, 0, 0);
+background-color: #fff;
+}
+
+.order_list_container {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  background: var(--gay-bg-color);
+  padding: 10px;
+  color: rgb(27, 23, 23);
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+/* reused */
+.all_order_details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+}
+
+/* status button */
+.all_orders_status_buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+.all_orders_status_buttons button {
+  padding: 12px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+}
+/* product */
+.all_order_thumbnail {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+.order_item_details {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+/* order details */
+.order_details {
+}
+
+/* shipping address */
+.all_order_shippingAddress {
+}
+/* view button */
+.all_order_buttons_div {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+.all_order_order_view_button {
+  width: 100%;
+  border-radius: 20px;
+  padding: 13px 18px;
+  font-size: 20px;
+  border: 2px solid green;
+  cursor: pointer;
+  background: green;
+  transition: all 0.5s ease-in-out;
+  color: var(--main-white-color);
+  text-align: center;
+}
+.all_order_order_update_button {
+    width: 100%;
+    border-radius: 20px;
+    padding: 13px 18px;
+    font-size: 20px;
+    cursor: pointer;
+    background: yellow;
+    transition: all 0.5s ease-in-out;
+    color: rgb(3, 3, 3);
+  text-align: center;
+
+}

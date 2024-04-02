@@ -1,0 +1,43 @@
+.add-category {
+    padding: 50px;
+  }
+  
+  .add-category .form-group {
+    margin-bottom: 20px;
+  }
+  .add_category_div{
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+  } 
+  
+  .add-category label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 24px;
+  }
+  
+  .add-category input[type='text'],
+  .add-category textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+  }
+  
+  .add-category textarea {
+    height: 100px;
+  }
+.add_category_button{
+    border: none;
+}
+  
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .back_button_add_catogory{
+    margin-top: 30px;
+  }

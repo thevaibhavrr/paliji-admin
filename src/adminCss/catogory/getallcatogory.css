@@ -1,0 +1,38 @@
+.category-list {
+    padding: 100px;
+  }
+  .category-list-header{
+    font-size: 25px;
+    padding: 20px;
+  }
+  
+  .category-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .category-list li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .category-list h3 {
+    margin-top: 0;
+    font-size: 25px;
+
+  }
+  
+  .category-list p {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+  
+  .all_category_page_button{
+    display: flex;
+    justify-content: space-evenly;
+  }
+.all_products_page_button{
+    background: none;
+}

@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main_admin_pages {
+  display: flex;
+}
+
+.admin_page_sidebar_div {
+  width: 23%;
+}
+
+.admin_page_main_div {
+  width: 100%;
+}
+
+:root {
+  /* --gay-bg-color: rgb(130, 130, 123); */
+  --gay-bg-color: rgb(110, 103, 110);
+  --main-white-color: white;
+}
+.Link_tag{
+  text-decoration: none;
+  color: var(--main-white-color);
+}

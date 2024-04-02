@@ -1,0 +1,41 @@
+.main_admin_sidebar{
+    background: var(--gay-bg-color);
+    max-width: 450px;
+    min-width:400px;
+    height: 100vh;
+}
+.admin_sidebar{
+    padding: 10px 0px;
+}
+.admin_sidebar_header_logo_img{
+    /* width: 70%; */
+}
+
+
+/* menu */
+
+.admin_sidebar_menu_list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 24px;
+    color: var(--main-white-color);
+    padding-left: 20px;
+}
+.admin_sidebar_menu_items{
+    width: 100%;
+    padding: 30px;
+    border-radius: 20px 0px  0px  20px ;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+    
+}
+
+.admin_sidebar_menu_items:hover{
+    background: white;
+    color: black;
+}
+.admin_sidebar_menu_items.selected {
+    background: white;
+    color: black;
+}

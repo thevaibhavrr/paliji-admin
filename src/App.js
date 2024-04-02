@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from "react-router-dom"; 
+import Admin from './AdminPages/Admin';
+import LoginForm from './auth/login';
+import ForgotPasswordForm from './auth/sendMail';
+import OtpVerifiedForm from './auth/otp';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+       <Routes>
+        <Route path="/" element={<LoginForm />} />
+        {/* <Route path="/Forgot-Password" element={<ForgotPasswordForm />} /> */}
+        {/* <Route path="/otp-verified" element={<OtpVerifiedForm />} /> */}
+       <Route
+					path="/admin/*"
+					element={<Admin />}
+				/>
+      </Routes>
     </div>
   );
 }
