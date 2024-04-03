@@ -10,8 +10,8 @@ function App() {
     <div>
        <Routes>
         <Route path="/" element={<LoginForm />} />
-        {/* <Route path="/Forgot-Password" element={<ForgotPasswordForm />} /> */}
-        {/* <Route path="/otp-verified" element={<OtpVerifiedForm />} /> */}
+        <Route path="/Forgot-Password" element={<ForgotPasswordForm />} />
+        <Route path="/otp-verified" element={<OtpVerifiedForm />} />
        <Route
 					path="/admin/*"
 					element={<Admin />}

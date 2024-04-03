@@ -15,7 +15,7 @@ function ForgotPasswordForm() {
     if (!email) {
       toast.error('Please fill email');
       return;
-    }
+    } 
     try {
       setLoading(true)
       const response = await makeApi("/api/forgot-password", "POST", { email })
