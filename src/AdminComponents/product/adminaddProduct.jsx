@@ -312,6 +312,7 @@ function AdminaddProduct() {
                   height={150}
                 />
               )}
+              {thumbnail && <img src={thumbnail} alt="" width={150} height={150} />}
             </div>
           </form>
 
