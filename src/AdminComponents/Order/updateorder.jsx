@@ -97,17 +97,13 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
 
   const handleUpdateOrder = async () => {
     try {
-      console.log(
-        "----------------------=-------------------",
-        updatedOrderData
-      );
       const response = await makeApi(
         `/api/update-order-by-id/${orderId}`,
         "PUT",
         updatedOrderData
       );
       console.log(response, "udpated");
-      //   onClose();
+        onClose();
     } catch (error) {
       console.log(error);
     }
