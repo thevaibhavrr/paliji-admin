@@ -60,7 +60,7 @@ function LoginForm() {
       <ToastContainer />
       <div className='main_login_page_div' >
         <form className="form" >
-          <p className="login">Log in to Paliji </p>
+          <p className="login">Log in to Palji </p>
           <div className="login_inputContainer">
             <input
               placeholder="phone or email or username"
