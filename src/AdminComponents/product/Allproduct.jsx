@@ -24,7 +24,9 @@ const Allproduct = () => {
       try {
         setLoading(true);
         const response = await makeApi(
-          `/api/get-all-products?name=${searchQuery}&category=${category}&&IsOutOfStock=${stockQuery}&page=${currentPage}&perPage=${ResultPerPage}`,
+          `/api/get-all-products?name=${searchQuery}&
+          category=${category}&&IsOutOfStock=${stockQuery}
+          &page=${currentPage}&perPage=${ResultPerPage}`,
           "GET"
         );
         setProducts(response.data.products);
@@ -163,50 +165,50 @@ const Allproduct = () => {
         {loading ? (
           <Loader />
         ) : (
-           <div>
+          <div>
             <div>
-            <div className="text-center">
-              {products.length === 0 && (
-                <img src="https://prenixfurniture.com/image/noproduct.jpg" alt="no product" className="w-50 img-fluid" />
-              )}
-            </div>
-            </div>
-          <div className="product-list">
-
-            {products.map((product) => (
-              <div key={product._id} className="product-card">
-                <img
-                  src={product.thumbnail}
-                  alt={product.name}
-                  className={product.quantity === 0 ? "bw-image" : ""}
-                />
-                <div className="product-info">
-                  <h3>{product.name}</h3>
-                  <p>Price: ₹{product.price}</p>
-                  <p>Stock: {product.quantity}</p>
-                  <p>Brand: {product.brand}</p>
-                  <p>Brand: {product?.category?.name}</p>
-                </div>
-                <div className="all_products_page_button">
-                  <Link to={`/admin/product-update/${product._id}`}>
-                    <button className="edit_button_all_product">Edit</button>
-                  </Link>
-                  <button
-                    onClick={() => setDeleteProductId(product._id)}
-                    className="delete_button_all_product"
-                  >
-                    Delete
-                  </button>
-                </div>
-                <div>
-                  <Link to={`/admin/product-details/${product._id}`}>
-                    <button className="view_button_all_product">View</button>
-                  </Link>
-                </div>
+              <div className="text-center">
+                {products.length === 0 && (
+                  <img src="https://prenixfurniture.com/image/noproduct.jpg" alt="no product" className="w-50 img-fluid" />
+                )}
               </div>
-            ))}
-            
-          </div>
+            </div>
+            <div className="product-list">
+
+              {products.map((product) => (
+                <div key={product._id} className="product-card">
+                  <img
+                    src={product.thumbnail}
+                    alt={product.name}
+                    className={product.quantity === 0 ? "bw-image" : ""}
+                  />
+                  <div className="product-info">
+                    <h3>{product.name}</h3>
+                    <p>Price: ₹{product.price}</p>
+                    <p>Stock: {product.quantity}</p>
+                    <p>Brand: {product.brand}</p>
+                    <p>Brand: {product?.category?.name}</p>
+                  </div>
+                  <div className="all_products_page_button">
+                    <Link to={`/admin/product-update/${product._id}`}>
+                      <button className="edit_button_all_product">Edit</button>
+                    </Link>
+                    <button
+                      onClick={() => setDeleteProductId(product._id)}
+                      className="delete_button_all_product"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                  <div>
+                    <Link to={`/admin/product-details/${product._id}`}>
+                      <button className="view_button_all_product">View</button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+
+            </div>
           </div>
         )}
         <div className="pagination">

@@ -304,15 +304,19 @@ function AdminaddProduct() {
               </label>
             </div>
             <div>
-              {!thumbnail && (
+              {thumbnail === "" ? (
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWRhb8uI0vKINdZJCfOmdIWu0uMBsKNCzlAk2myawr1rr3xFE-5g_B575p5H9V5S5nH3E&usqp=CAU"
-                  alt=""
+                  alt="no image"
                   width={150}
                   height={150}
                 />
-              )}
-              {thumbnail && <img src={thumbnail} alt="" width={150} height={150} />}
+              )
+            
+            :(
+              <img src={thumbnail} alt="thumbnail" width={150} height={150} />
+            )}
+              {/* {thumbnail && <img src={thumbnail} alt="thumbnail" width={150} height={150} />} */}
             </div>
           </form>
 
