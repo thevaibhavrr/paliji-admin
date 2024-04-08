@@ -44,6 +44,8 @@ function LoginForm() {
           if (response.data.success === true) {
             if (response.data.user.role === "admin") {
               navigate("/admin/admin-dashboard")
+            }else{
+              navigate("https://palji-bakeryy.vercel.app/")
             }
           }
         } catch (error) {
