@@ -21,6 +21,7 @@ export const makeApi = async (
     const config = {
       method,
       url: `https://pajiweb.onrender.com${endpoint}`,
+      // url: `https://sk-backend-uvv5.onrender.com${endpoint}`,
       // url:"http://localhost:7000"+endpoint,
       headers,
       data

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../adminCss/catogory/AddCategory.css"; // Import CSS file for styling
+import "../../adminCss/catogory/AddCategory.css"; 
 import { makeApi } from "../../api/callApi";
 import { Link } from "react-router-dom";
 

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import "../../adminCss/order/allorder.css";
 import { makeApi } from "../../api/callApi";
@@ -15,9 +16,8 @@ function AllOrder() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await makeApi(`/api/get-order?status=${status}`, "GET");
+      const response = await makeApi(`/api/get-all-second-order?status=${status}`, "GET");
       setOrders(response.data.Orders);
-      // console.log(orders);
     } catch (error) {
       console.log(error);
     } finally {
@@ -40,38 +40,30 @@ function AllOrder() {
   const handleClose = () => {
     setSelectedOrderId(null);
   };
-  // const handleMenuItemClick = (itemName) => {
-  //   setSelectedItem(itemName);
-  // };
 
   return (
     <div className="all-orders-container">
       <div className="all_orders_status_buttons">
         <button
-          className={`admin_add_product_button ${selectedStatus === "Pending" ? "selectedStatus" : ""
-            }`}
+          className={`admin_add_product_button ${selectedStatus === "Pending" ? "selectedStatus" : ""}`}
           onClick={() => handleStatusChange("Pending")}
         >
           Pending Orders
         </button>
-
         <button
-          className={`admin_add_product_button ${selectedStatus === "Cancelled" ? "selectedStatus" : ""
-            }`}
+          className={`admin_add_product_button ${selectedStatus === "Cancelled" ? "selectedStatus" : ""}`}
           onClick={() => handleStatusChange("Cancelled")}
         >
           Cancelled Orders
         </button>
         <button
-          className={`admin_add_product_button ${selectedStatus === "Shipped" ? "selectedStatus" : ""
-            }`}
+          className={`admin_add_product_button ${selectedStatus === "Shipped" ? "selectedStatus" : ""}`}
           onClick={() => handleStatusChange("Shipped")}
         >
           Shipped Orders
         </button>
         <button
-          className={`admin_add_product_button ${selectedStatus === "Delivered" ? "selectedStatus" : ""
-            }`}
+          className={`admin_add_product_button ${selectedStatus === "Delivered" ? "selectedStatus" : ""}`}
           onClick={() => handleStatusChange("Delivered")}
         >
           Delivered Orders
@@ -82,117 +74,54 @@ function AllOrder() {
           <Loader />
         ) : (
           <div className="main_order_list_container">
-            {orders?.map((data, index) => (
-              <div key={index} className="order_list_container">
-                {/* product details */}
+            {/* <div> */}
+              {orders.map((order) => (
                 <div>
-                  {data?.orderItems?.map((item, index) => (
-                    <div key={index} className="order_item_details">
-                      <div>
-                        <img
-                          src={item?.productId?.thumbnail}
-                          alt="thumbnail"
-                          className="all_order_thumbnail"
-                        />
+                <div key={order._id} className="order_list_container">
+                  <div>
+                    {order.CartId?.orderItems?.map((item) => (
+                      <div key={item?._id} className="order_item_details">
+                        <div>
+                          <img src={item?.productId?.thumbnail} alt="thumbnail" className="all_order_thumbnail" />
+                        </div>
+                        <div>
+                          <p><b>Name:</b> {item?.productId?.name}</p>
+                          <p><b>Price:</b> {item?.singleProductPrice}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p>
-                          {" "}
-                          <b>Name :</b> {item?.productId?.name}
-                        </p>
-                        {/* <p>Quantity: {item?.quantity}</p> */}
-                        <p>
-                          {" "}
-                          <b> Price :</b> {item?.productId?.price}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                {/* order details */}
-                <div className="order_details all_order_details">
-                  <div>
-                    {" "}
-                    <b> Order Id :</b> {data._id}
+                    ))}
                   </div>
-                  <div>
-                    {" "}
-                    <b> Status : </b> {data.status}
+                  <div className="order_details all_order_details">
+                    <div><b>Order Id:</b> {order?._id}</div>
+                    <div><b>Status:</b> {order?.status}</div>
+                    <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div>
                   </div>
-                  <div>
-                    {" "}
-                    <b> Total Price : </b> {data.totalPrice}
+                  <div className="all_order_shippingAddress all_order_details">
+                    <div><b>Pincode:</b> {order?.shippingAddress?.pincode}</div>
+                    <div><b>State:</b> {order?.shippingAddress?.state}</div>
+                    <div><b>City:</b> {order?.shippingAddress?.city}</div>
+                  </div>
+                  <div className="all_order_other_details all_order_details">
+                    <div><b>Payment Method:</b> {order?.paymentMethod}</div>
+                    <div><b>Created At:</b> {new Date(order?.createdAt).toLocaleString("en-US", { timeZone: "UTC" })}</div>
+                  </div>
+                  <div className="all_order_price_details all_order_details">
+                    <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div>
+                    <div><b>Shipping Price:</b> {order?.CartId?.shippingPrice}</div>
+                    <div><b>Tax Price:</b> {order?.CartId?.taxPrice}</div>
                   </div>
                 </div>
-                {/* shippingAddress */}
-                <div className="all_order_shippingAddress all_order_details">
-                  <div>
-                    {" "}
-                    <b> Pincode : </b> {data.shippingAddress.pincode}
-                  </div>
-                  <div>
-                    {" "}
-                    <b> State : </b> {data.shippingAddress.state}
-                  </div>
-                  <div>
-                    {" "}
-                    <b> City : </b> {data.shippingAddress.city}
+                  <div className="all_order_buttons_div">
+                    <Link to={`/admin/order/${order?._id}`} className="all_order_order_view_button">View Order</Link>
+                    <div className="all_order_order_update_button" onClick={() => handleOpenPopup(order?._id)}>Update Order</div>
                   </div>
                 </div>
-                {/* other details */}
-                <div className="all_order_other_details all_order_details">
-                  <div>
-                    {" "}
-                    <b> Payment Method : </b> {data.paymentMethod}{" "}
-                  </div>
-                  <div>
-                    <b> Created At : </b>{" "}
-                    {new Date(data.createdAt).toLocaleString("en-US", {
-                      timeZone: "UTC", // Change this according to your timezone if needed
-                    })}
-                  </div>
-                </div>
-                {/* price realted details */}
-                <div className="all_order_price_details all_order_details">
-                  <div>
-                    {" "}
-                    <b> Total Price : </b> {data.totalPrice}{" "}
-                  </div>
-                  <div>
-                    {" "}
-                    <b> Shipping Price : </b> {data.shippingPrice}{" "}
-                  </div>
-                  <div>
-                    {" "}
-                    <b> Tax Price : </b> {data.taxPrice}{" "}
-                  </div>
-                </div>
-                {/* view order button */}
-                <div className="all_order_buttons_div">
-                  <Link
-                    to={`/admin/order/${data._id}`}
-                    className="all_order_order_view_button"
-                  >
-                    View Order
-                  </Link>
-                  <div
-                    className="all_order_order_update_button"
-                    onClick={() => handleOpenPopup(data._id)}
-                  >
-                    {" "}
-                    Update Order{" "}
-                  </div>
-                </div>
-                
-              </div>
-              
-            ))}
+              ))}
+            {/* </div> */}
           </div>
         )}
       </div>
-      {selectedOrderId && (
-        <UpdateOrderPopup orderId={selectedOrderId} onClose={handleClose} />
-      )}
+      {selectedOrderId && <UpdateOrderPopup orderId={selectedOrderId} onClose={handleClose} />}
     </div>
   );
 }

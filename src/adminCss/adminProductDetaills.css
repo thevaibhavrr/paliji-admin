@@ -1,59 +1,83 @@
-.product-details {
-  max-width: 80%;
-  padding: 30px 0px;
+/* adminProductDetaills.css */
+.All_Product_loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.main-slider-div {
-  /* padding: 20px 14px; */
-  position: relative;
-  margin: 0px 10px;
-  /* width: 90%; */
+.back_arrow_icon {
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
-.our-product-text {
-  font-size: 20px;
-  font-family: Georgia;
+.back_arrow_icon:hover {
+  transform: translateX(-3px);
 }
 
-.slider_images {
-  display: block;
-  /* width: 100%; */
-  object-fit: cover;
+.productDisplay {
+  display: flex;
+}
+
+.product-display-left {
+  width: 50%;
+}
+
+.productdisplay-img-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.productdisplay-img-list img {
+  width: 80px;
+  height: 80px;
+  margin: 5px;
   cursor: pointer;
 }
 
-.prev-button {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  z-index: 2;
-}
-.next-button {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  z-index: 2;
+.productdisplay-img {
+  margin-top: 20px;
 }
 
-/* product details */
-.product_text_bottom_section {
-  padding: 0px 10px;
+.productdisplay-main-img {
+  width: 100%;
 }
 
-.admin_prioduct_details {
-  display: flex;
-  text-align: center;
-  gap: 20px;
-  font-size: 30px;
-  padding: 20px;
+.product-display-right {
+  padding-left: 20px;
 }
-.admin_prioduct_details_heading {
-  font-weight: bolder;
-  font-size: 30px;
+
+.product-display-right h1 {
+  margin-bottom: 10px;
 }
-.back_arrow_icon{
-    width: 100px;
-    margin-bottom: 20px;
+
+.product-display-right h2 {
+  margin-bottom: 10px;
+  color: #6c757d;
+}
+
+.product-display-right p {
+  margin-bottom: 5px;
+}
+
+.product-images img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-success:hover {
+  background-color: #218838;
 }

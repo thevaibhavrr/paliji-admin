@@ -1,46 +1,83 @@
+/* adminaddProduct.css */
 .add-product-container {
-    max-width: 90%;
-    padding: 40px;
-  }
-  
-  .add_product_text{
-    margin-bottom: 20px;
-    font-size: 30px;
-  }
-  /* input */
-  .add_product_input_filed {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 20px;
-    border-radius: 10px;
-  }
- 
-  .add_product_input_filed_image{
-    border: 1px solid black;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 10px;
-  }
-.add_product_dropdown{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.add_product_text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.add_product_input_filed {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add_product_dropdown {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.add_product_page_button_div {
+  text-align: center;
+}
+
+.add_product_page_button {
+  padding: 10px 20px;
+  background-color: var(--primary-color) !important;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add_product_page_button:hover {
+  background-color: var(--secondary-color);
+}
+
+.back_arrow_icon {
   cursor: pointer;
 }
-  
-  /* button */
-  .add_product_page_button_div{
-    display: flex;
-    justify-content: center;
-  }
- .add_product_page_button{
-    border: none;
- }
-.add_product_page_add_more_div{
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
+
+.add_product_input_filed_image {
+  margin-bottom: 20px;
 }
 
 
 
+/* Loader Styles */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.loader-spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-top: 8px solid var(--primary-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 
 

@@ -19,7 +19,7 @@ function AdminaddProduct() {
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
   const [size, setSize] = useState("");
-
+  const  [productType, setProductType] = useState("Domestic");
   const handleSubmit = async (e) => {
     e.preventDefault();
     // if (!name || !price || !quantity || !category || !brand || !thumbnail || !images ) {
@@ -42,6 +42,10 @@ function AdminaddProduct() {
     if (!thumbnail) {
       requiredFields.push("Thumbnail");
     }
+    if (!productType) {
+      requiredFields.push("Product Type");
+      
+    }
     if (images.length == 1) {
       requiredFields.push(" Product Images");
     }
@@ -63,6 +67,7 @@ function AdminaddProduct() {
         category,
         brand,
         size,
+        productType
       });
       setName("");
       setDescription("");
@@ -74,6 +79,7 @@ function AdminaddProduct() {
       setCategory("");
       setBrand("");
       setSize("");
+      setProductType("Domestic");
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -235,6 +241,19 @@ function AdminaddProduct() {
             onChange={(e) => setQuantity(e.target.value)}
             // required
           />
+          {/* drop down for setProductType */}
+          <select
+            className="add_product_input_filed"
+            value={productType}
+            onChange={(e) => setProductType(e.target.value)}
+          >
+            <option value="Domestic">Domestic</option>
+            <option value="International">International</option>
+          </select>
+
+
+
+
           {/* {images.map((image, index) => (
             <input
               key={index}
