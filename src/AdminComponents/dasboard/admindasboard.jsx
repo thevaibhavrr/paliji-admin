@@ -10,7 +10,6 @@ function Admindasboard() {
   const [dasboardData, setDasboardData] = useState(0);
   const [loading, setLoading] = useState(false);
   const [TotalRevenue, setTotalRevenue] = useState();
-  console.log("toal-------", TotalRevenue)
 
   // get dasboard data
   // for summary data
@@ -177,10 +176,7 @@ function Admindasboard() {
         </div>
 
         {/* revenu  */}
-        <div className="main_order_pie_chart_graph">
-          <h2>Sale Details</h2>
-          <Doughnut data={revenuChartData} />
-        </div>
+        
       </div>
       {/* show reveq in bar */}
     </div>

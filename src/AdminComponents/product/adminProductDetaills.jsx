@@ -94,8 +94,8 @@ function ProductDetails() {
                   <h1>{product.name}</h1>
                   <h2>{product.subTitle}</h2>
                   <p>{product.description}</p>
-                  <p><strong>Price:</strong> ${product.price}</p>
-                  <p><strong>Price After Discount:</strong> ${product.PriceAfterDiscount}</p>
+                  <p><strong>Price:</strong> ₹{product.price}</p>
+                  <p><strong>Price After Discount:</strong> ₹{product.PriceAfterDiscount}</p>
                   <p><strong>Discount Percentage:</strong> {product.discountPercentage}%</p>
                   <p><strong>Quantity:</strong> {product.quantity}</p>
                   <p><strong>Category:</strong> {product.category.name}</p>
