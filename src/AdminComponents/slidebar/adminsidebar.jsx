@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import "../../adminCss/sidebar/adminsidebar.css";
 import { Link } from "react-router-dom";
-// import Logo from "../../images/SK Foods Logo 3.png";
+import Logo from "./logo.png";
 
 function Adminsidebar() {
   const [selectedItem, setSelectedItem] = useState("");
@@ -27,7 +27,7 @@ function Adminsidebar() {
           <div className="admin_sidebar_header_logo">
             <img
               alt="logo"
-              // src={Logo}
+              src={Logo}
               className="admin_sidebar_header_logo_img"
             />
           </div>
