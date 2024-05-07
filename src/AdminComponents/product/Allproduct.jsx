@@ -143,7 +143,7 @@ const Allproduct = () => {
               <option value="true">Out of stock</option>
             </select>
           </div>
-          <div>
+          {/* <div>
             <select
               className="add_product_input_filed add_product_dropdown"
               value={productType}
@@ -153,7 +153,7 @@ const Allproduct = () => {
               <option value="International">International</option>
               <option value="Domestic">Domestic</option>
             </select>
-          </div>
+          </div> */}
           <div>
             <select
               className="add_product_input_filed add_product_dropdown"
