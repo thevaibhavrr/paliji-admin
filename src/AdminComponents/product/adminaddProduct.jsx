@@ -120,7 +120,7 @@ function AdminaddProduct() {
         data.append("file", compressedFile);
         // data.append("upload_preset", "ou1fk438");
         data.append("upload_preset", "wnsxe2pa");
-        data.append("folder", "Tixteen");
+        data.append("folder", "palji");
 
         await axios
           .post(
@@ -153,7 +153,7 @@ function AdminaddProduct() {
         const data = new FormData();
         data.append("file", compressedFile);
         data.append("upload_preset", "wnsxe2pa");
-        data.append("folder", "Tixteen");
+        data.append("folder", "palji");
 
         await axios
           .post(
