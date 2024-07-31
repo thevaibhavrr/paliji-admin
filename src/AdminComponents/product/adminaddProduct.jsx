@@ -152,11 +152,14 @@ function AdminaddProduct() {
 
         const data = new FormData();
         data.append("file", compressedFile);
-        data.append("upload_preset", "ou1fk438");
+        data.append("upload_preset", "wnsxe2pa");
+        data.append("folder", "Tixteen");
 
         await axios
           .post(
-            `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
+            // `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
+            `https://api.cloudinary.com/v1_1/dzvsrft15/upload`,
+
 
             data
           )
