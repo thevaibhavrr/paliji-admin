@@ -41,7 +41,7 @@ function AdminaddProduct() {
     if (!thumbnail) {
       requiredFields.push("Thumbnail");
     }
-   
+
     if (images.length == 1) {
       requiredFields.push(" Product Images");
     }
@@ -118,12 +118,14 @@ function AdminaddProduct() {
 
         const data = new FormData();
         data.append("file", compressedFile);
-        data.append("upload_preset", "ou1fk438");
+        // data.append("upload_preset", "ou1fk438");
+        data.append("upload_preset", "wnsxe2pa");
+        data.append("folder", "Tixteen");
 
         await axios
           .post(
-            `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
-
+            // `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
+            `https://api.cloudinary.com/v1_1/dzvsrft15/upload`,
             data
           )
           .then((response) => {
@@ -202,7 +204,7 @@ function AdminaddProduct() {
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            // required
+          // required
           />
           <input
             type="text"
@@ -217,7 +219,7 @@ function AdminaddProduct() {
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            // required
+          // required
           />
           <input
             type="text"
@@ -233,10 +235,10 @@ function AdminaddProduct() {
             placeholder="Quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
-            // required
+          // required
           />
           {/* drop down for setProductType */}
-          
+
 
 
 
@@ -264,7 +266,7 @@ function AdminaddProduct() {
               onChange={(event) => {
                 handleImageUpload(event, index);
               }}
-              // required
+            // required
             />
           ))}
           <div>
@@ -305,7 +307,7 @@ function AdminaddProduct() {
                   id="file"
                   type="file"
                   onChange={(e) => handleThumbnailUpload(e)}
-                  // required
+                // required
                 />
               </label>
             </div>
@@ -318,10 +320,10 @@ function AdminaddProduct() {
                   height={150}
                 />
               )
-            
-            :(
-              <img src={thumbnail} alt="thumbnail" width={150} height={150} />
-            )}
+
+                : (
+                  <img src={thumbnail} alt="thumbnail" width={150} height={150} />
+                )}
               {/* {thumbnail && <img src={thumbnail} alt="thumbnail" width={150} height={150} />} */}
             </div>
           </form>
