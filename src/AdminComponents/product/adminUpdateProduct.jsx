@@ -35,18 +35,19 @@ function UpdateProduct() {
           `/api/get-single-product/${productId}`,
           "GET"
         );
-        setProduct(response.data.product);
+        const product = response.data.product;
+        setProduct(product);
         setFormData({
-          name: response.data.product.name,
-          description: response.data.product.description,
-          price: response.data.product.price,
-          quantity: response.data.product.quantity,
-          category: response.data.product.category,
-          brand: response.data.product.brand,
-          image: response.data.product.image,
-          thumbnail: response.data.product.thumbnail,
-          discountPercentage: response.data.product.discountPercentage,
-          productType: response.data.product.productType
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          quantity: product.quantity,
+          category: product.category._id, 
+          brand: product.brand,
+          image: product.image,
+          thumbnail: product.thumbnail,
+          discountPercentage: product.discountPercentage,
+          productType: product.productType,
         });
       } catch (error) {
         console.error("Error fetching product details:", error);
@@ -56,6 +57,37 @@ function UpdateProduct() {
     };
     fetchProduct();
   }, [productId]);
+  
+
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await makeApi(
+  //         `/api/get-single-product/${productId}`,
+  //         "GET"
+  //       );
+  //       setProduct(response.data.product);
+  //       setFormData({
+  //         name: response.data.product.name,
+  //         description: response.data.product.description,
+  //         price: response.data.product.price,
+  //         quantity: response.data.product.quantity,
+  //         category: response.data.product.category,
+  //         brand: response.data.product.brand,
+  //         image: response.data.product.image,
+  //         thumbnail: response.data.product.thumbnail,
+  //         discountPercentage: response.data.product.discountPercentage,
+  //         productType: response.data.product.productType
+  //       });
+  //     } catch (error) {
+  //       console.error("Error fetching product details:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchProduct();
+  // }, [productId]);
 
   const handleChange = (e) => {
     setFormData({
@@ -299,6 +331,7 @@ function UpdateProduct() {
                 />
               </div>
               <div>
+              
                 <label>Category:</label>
                 {/* <input
                   type="text"
@@ -308,7 +341,7 @@ function UpdateProduct() {
                 /> */}
                 <select
                   className="add_product_input_filed add_product_dropdown"
-                  value={formData?.category}
+                  value={formData?.category || ""} 
                   name="category"
                   onChange={handleChange}
                 >
@@ -434,9 +467,12 @@ function UpdateProduct() {
                   )}
                 </div>
               </div>
-              <button type="submit" className="update_product_button">
-                {Updateloader ? <Loader /> : <div>Update Product</div>}
-              </button>
+              <div className="d-flex justify-content-center align-items-center text-center" >
+
+              <div type="submit" className=" d-flex justify-content-center align-items-center text-center " style={{border:"none"}} >
+                {!Updateloader ? <div className="w-100" > <Loader  /> </div>: <div className="btn btn-secondary" >Update Product</div>}
+              </div>
+              </div>
             </form>
           </div>
         </div>
