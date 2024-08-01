@@ -115,17 +115,18 @@ function AdminaddProduct() {
         console.log(file);
 
         const compressedFile = await file;
-
+        // email-  festivebuck4@justzeus.com
+        // pass - ZXY_Abc-123
         const data = new FormData();
         data.append("file", compressedFile);
         // data.append("upload_preset", "ou1fk438");
-        data.append("upload_preset", "wnsxe2pa");
+        data.append("upload_preset", "pfendx01");
         data.append("folder", "palji");
 
         await axios
           .post(
             // `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
-            `https://api.cloudinary.com/v1_1/dzvsrft15/upload`,
+            `https://api.cloudinary.com/v1_1/dwxtuqnty/upload`,
             data
           )
           .then((response) => {
@@ -152,15 +153,12 @@ function AdminaddProduct() {
 
         const data = new FormData();
         data.append("file", compressedFile);
-        data.append("upload_preset", "wnsxe2pa");
+        data.append("upload_preset", "pfendx01");
         data.append("folder", "palji");
 
         await axios
           .post(
-            // `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
-            `https://api.cloudinary.com/v1_1/dzvsrft15/upload`,
-
-
+            `https://api.cloudinary.com/v1_1/dwxtuqnty/upload`,
             data
           )
           .then((response) => {
