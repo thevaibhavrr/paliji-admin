@@ -470,7 +470,7 @@ function UpdateProduct() {
               <div className="d-flex justify-content-center align-items-center text-center" >
 
               <div type="submit" className=" d-flex justify-content-center align-items-center text-center " style={{border:"none"}} >
-                {Updateloader ? <div className="w-100" > <Loader  /> </div>: <div className="btn btn-secondary" >Update Product</div>}
+                {Updateloader ? <div className="w-100" > <Loader  /> </div>: <div className="btn btn-secondary" onClick={handleSubmit} >Update Product</div>}
               </div>
               </div>
             </form>
