@@ -59,37 +59,16 @@ function UpdateProduct() {
   }, [productId]);
   
 
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const response = await makeApi(
-  //         `/api/get-single-product/${productId}`,
-  //         "GET"
-  //       );
-  //       setProduct(response.data.product);
-  //       setFormData({
-  //         name: response.data.product.name,
-  //         description: response.data.product.description,
-  //         price: response.data.product.price,
-  //         quantity: response.data.product.quantity,
-  //         category: response.data.product.category,
-  //         brand: response.data.product.brand,
-  //         image: response.data.product.image,
-  //         thumbnail: response.data.product.thumbnail,
-  //         discountPercentage: response.data.product.discountPercentage,
-  //         productType: response.data.product.productType
-  //       });
-  //     } catch (error) {
-  //       console.error("Error fetching product details:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchProduct();
-  // }, [productId]);
-
   const handleChange = (e) => {
+
+    const { name, value } = e.target;
+
+
+     if (["price", "quantity", "discountPercentage"].includes(name)) {
+      if (!/^\d*$/.test(value)) {
+        return;
+      }
+    }
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -146,17 +125,7 @@ function UpdateProduct() {
     }));
   };
   const handleImageUpload = async (event, index) => {
-    // const files = Array.from(e.target.files);
-    // const imageUrls = files.map((file) => URL.createObjectURL(file));
-    // console.log("imageUrlsimageUrlsimageUrls",imageUrls)
-    // setFormData((prevFormData) => {
-    //   const updatedImages = [...prevFormData.image];
-    //   updatedImages[index] = imageUrls[0];
-    //   return {
-    //     ...prevFormData,
-    //     image: updatedImages,
-    //   };
-    // });
+    
     console.log("image upload ");
     try {
       const file = event.target.files[0];
@@ -171,21 +140,13 @@ function UpdateProduct() {
         data.append("folder", "palji");
         await axios
           .post(
-            // `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
             `https://api.cloudinary.com/v1_1/dwxtuqnty/upload`,
-
-
             data
           )
           .then((response) => {
             if (response.status === 200) {
               const imageUrls = response.data.url;
-              // setFormData({ ...formData, screenshot: imageURL });
-              // handleImageChange(index, imageURL);
-
-              // const files = Array.from(e.target.files);
-              // const imageUrls = files.map((file) => URL.createObjectURL(file));
-              console.log("imageUrlsimageUrlsimageUrls", imageUrls);
+             
               setFormData((prevFormData) => {
                 const updatedImages = [...prevFormData.image];
                 updatedImages[index] = imageUrls;
@@ -218,22 +179,14 @@ function UpdateProduct() {
 
         await axios
           .post(
-            // `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
             `https://api.cloudinary.com/v1_1/dwxtuqnty/upload`,
             data
           )
           .then((response) => {
             if (response.status === 200) {
               const imageUrls = response.data.url;
-              // setFormData({ ...formData, screenshot: imageURL });
-              // handleImageChange(index, imageURL);
-
-              // const files = Array.from(e.target.files);
-              // const imageUrls = files.map((file) => URL.createObjectURL(file));
               console.log("imageUrlsimageUrlsimageUrls", imageUrls);
               setFormData((prevFormData) => {
-                //   const updatedImages = [...prevFormData.image];
-                //   updatedImages[index] = imageUrls;
                 return {
                   ...prevFormData,
                   thumbnail: imageUrls,
@@ -306,7 +259,7 @@ function UpdateProduct() {
               <div>
                 <label>Price:</label>
                 <input
-                  type="number"
+                  type="text"
                   name="price"
                   value={formData?.price}
                   onChange={handleChange}
@@ -315,7 +268,7 @@ function UpdateProduct() {
               <div>
                 <label>Discount Percentage:</label>
                 <input
-                  type="number"
+                  type="text"
                   name="discountPercentage"
                   value={formData?.discountPercentage}
                   onChange={handleChange}
@@ -324,7 +277,7 @@ function UpdateProduct() {
               <div>
                 <label>Quantity:</label>
                 <input
-                  type="number"
+                  type="text"
                   name="quantity"
                   value={formData?.quantity}
                   onChange={handleChange}

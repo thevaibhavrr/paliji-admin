@@ -30,6 +30,11 @@ export const makeApi = async (
     const response = await axios(config);
     return response;
   } catch (error) {
+    const message = error.response.data
+		if(message.error === "Invalid Token.") {
+			localStorage.clear()
+			window.location.href = "/";
+		}
     console.error("API request failed:", error.response.data);
     throw error;
   }

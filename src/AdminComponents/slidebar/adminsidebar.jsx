@@ -1,13 +1,12 @@
-
-
 import React, { useState } from "react";
 import "../../adminCss/sidebar/adminsidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "./logo.png";
 
 function Adminsidebar() {
   const [selectedItem, setSelectedItem] = useState("");
-  const [isOpen, setIsOpen] = useState(true); 
+  const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate(); // useNavigate for redirecting after logout
 
   const handleMenuItemClick = (itemName) => {
     setSelectedItem(itemName);
@@ -17,8 +16,13 @@ function Adminsidebar() {
     setIsOpen(!isOpen);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Adjust the key name to match your token key
+    navigate("/"); // Redirect to the login page after logout
+  };
+
   return (
-    <div className={`main_admin_sidebar ${isOpen ? 'open' : 'closed'}`}>
+    <div className={`main_admin_sidebar  ${isOpen ? 'open' : 'closed'}`}>
       <button className="toggleButton" onClick={toggleSidebar}>
         {isOpen ? 'Close' : 'Open'}
       </button>
@@ -86,7 +90,13 @@ function Adminsidebar() {
             </Link>
           </div>
         </div>
+        {/* Logout Button */}
       </div>
+        <div className="pb-5 text-center">
+          <button className="btn btn-danger" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
     </div>
   );
 }
