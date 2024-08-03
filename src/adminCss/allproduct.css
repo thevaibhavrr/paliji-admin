@@ -64,7 +64,10 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
+  max-height:  700px  ;
+  overflow-y: scroll;
+  font-size: 16px;
 }
 
 .product-card:hover {
@@ -89,12 +92,14 @@
 
 .product-card h3 {
   color: var(--primary-color);
-  font-size: 1.5rem;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
   margin-bottom: 10px;
 }
 
 .product-card p {
-  font-size: 1.2rem;
+  font-size: 16px;
   margin-bottom: 8px;
 }
 

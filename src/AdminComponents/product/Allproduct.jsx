@@ -25,9 +25,10 @@ const Allproduct = () => {
       try {
         setLoading(true);
         const response = await makeApi(
-          `/api/get-all-products?name=${searchQuery}&IsOutOfStock=${stockQuery}&page=${currentPage}&perPage=${ResultPerPage}&category=${category}&productType=${productType}`,
+          `/api/get-all-products-for-admin?name=${searchQuery}&IsOutOfStock=${stockQuery}&page=${currentPage}&perPage=${ResultPerPage}&category=${category}&productType=${productType}`,
           "GET"
         );
+        console.log(response);
         setProducts(response.data.products);
         setToalProduct(response.data.totalProducts);
       } catch (error) {
@@ -186,18 +187,24 @@ const Allproduct = () => {
 
               {products.map((product) => ( 
                 <div key={product._id} className="product-card">
+                  <div className="text-center p-2" >
+
                   <img
                     src={product.thumbnail}
                     alt={product.name}
                     className={product.quantity === 0 ? "bw-image" : ""}
-                  />
+                    style={{maxWidth: "200px", maxHeight: "200px"}}
+                    />
+                    </div>
                   <div className="product-info">
                     <h3>{product.name}</h3>
-                    <p>Price: ₹{product.price}</p>
-                    <p>Stock: {product.quantity}</p>
-                    <p>Brand: {product.brand}</p>
-                    <p>category: {product?.category?.name}</p>
-                    <p>productType: {product?.productType}</p>
+                    <p><b>Price:</b> ₹{product.price}</p>
+                    <p> <b>discountPercentage:</b> {product.discountPercentage}% </p>
+                    <p><b>Price After Discount:</b> ₹{product.PriceAfterDiscount}</p>
+                    <p><b>Stock:</b> {product.quantity}</p>
+                    {/* <p><b>Brand:</b> {product.brand}</p> */}
+
+                    <p><b>Category:</b> {product?.category?.name}</p>
                   </div>
                   <div className="all_products_page_button">
                     <Link to={`/admin/product-update/${product._id}`}>
