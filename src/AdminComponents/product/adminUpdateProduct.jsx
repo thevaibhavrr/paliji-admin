@@ -13,6 +13,21 @@ function UpdateProduct() {
   const [loading, setLoading] = useState(false);
   const [Updateloader, setUpdateLoader] = useState(false);
   const [product, setProduct] = useState(null);
+  const [deliverables, setDeliverables] = useState([]);
+  const [newDeliverable, setNewDeliverable] = useState("");
+  const fetchCampaignDeliverables = async () => {
+    try {
+      setLoading(true);
+      const response = await makeApi(`/api/get-all-includes/${productId}`, 'GET');
+      const campaignData = response.data.includes;
+      setDeliverables(campaignData);
+    } catch (error) {
+      console.error('Error fetching campaign deliverables:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -27,34 +42,35 @@ function UpdateProduct() {
     productType: "",
   });
 
+  const fetchProduct = async () => {
+    try {
+      setLoading(true);
+      const response = await makeApi(
+        `/api/get-single-product/${productId}`,
+        "GET"
+      );
+      const product = response.data.product;
+      setProduct(product);
+      setFormData({ 
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        quantity: product.quantity,
+        category: product.category._id, 
+        brand: product.brand,
+        image: product.image,
+        thumbnail: product.thumbnail,
+        discountPercentage: product.discountPercentage,
+        productType: product.productType,
+      });
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        setLoading(true);
-        const response = await makeApi(
-          `/api/get-single-product/${productId}`,
-          "GET"
-        );
-        const product = response.data.product;
-        setProduct(product);
-        setFormData({
-          name: product.name,
-          description: product.description,
-          price: product.price,
-          quantity: product.quantity,
-          category: product.category._id, 
-          brand: product.brand,
-          image: product.image,
-          thumbnail: product.thumbnail,
-          discountPercentage: product.discountPercentage,
-          productType: product.productType,
-        });
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    fetchCampaignDeliverables()
     fetchProduct();
   }, [productId]);
   
@@ -126,7 +142,7 @@ function UpdateProduct() {
   };
   const handleImageUpload = async (event, index) => {
     
-    console.log("image upload ");
+  
     try {
       const file = event.target.files[0];
 
@@ -197,6 +213,45 @@ function UpdateProduct() {
       }
     } catch (error) {
       console.log("image upload error", error);
+    }
+  };
+
+  const handleDeleteDeliverable = async (deletedelid) => {
+    try {
+      setLoading(true);
+      const response = await makeApi(`/api/delete-include/${deletedelid}`, 'DELETE');
+      fetchCampaignDeliverables();
+    } catch (error) {
+      console.error('Error deleting campaign deliverable:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleUpdateDeliverable = async (deliverableId, updatedName) => {
+    console.log(deliverableId);
+    try {
+      setLoading(true);
+      await makeApi(`/api/update-include/${deliverableId}`, 'PUT', { include: updatedName });
+      fetchCampaignDeliverables();
+    } catch (error) {
+      console.error('Error updating campaign deliverable:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleAddDeliverable = async () => {
+    if (!newDeliverable) return;
+
+    try {
+      setLoading(true);
+      await makeApi('/api/include-product', 'POST', { productId: productId, include: newDeliverable });
+      setNewDeliverable("");
+      fetchCampaignDeliverables();
+    } catch (error) {
+      console.error('Error adding campaign deliverable:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -428,6 +483,52 @@ function UpdateProduct() {
               </div>
             </form>
           </div>
+          <div className='campaign-update' >
+          <h4 className="update-title">Update Deliverables</h4>
+
+          <div className="deliverables-container">
+            {deliverables.map((item) => (
+              <div key={item._id} className="deliverable-row">
+                <input
+                  type="text"
+                  value={item.include}
+                  onChange={(e) => {
+                    const updatedDeliverables = deliverables.map((deliverable) =>
+                      deliverable._id === item._id ? { ...deliverable, include: e.target.value } : deliverable
+                    );
+                    setDeliverables(updatedDeliverables);
+                  }}
+                  className="deliverable-input"
+                />
+                <button
+                  onClick={() => handleUpdateDeliverable(item._id, item.include)}
+                  className="btn btn-warning "
+                >
+                  Update
+                </button>
+                <button
+                  onClick={() => handleDeleteDeliverable(item._id)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+
+            <div className="add-deliverable-row">
+              <input
+                type="text"
+                value={newDeliverable}
+                onChange={(e) => setNewDeliverable(e.target.value)}
+                placeholder="Add new deliverable"
+                className="deliverable-input"
+              />
+              <button onClick={handleAddDeliverable} className=" btn btn-success ">
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
         </div>
       )}
     </>

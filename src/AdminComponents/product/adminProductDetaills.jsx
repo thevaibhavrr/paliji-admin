@@ -9,6 +9,7 @@ function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [includes, setIncludes] = useState([]);
 
   // Fetch product details from API
   const fetchProduct = async () => {
@@ -16,6 +17,7 @@ function ProductDetails() {
       setLoading(true);
       const response = await makeApi(`/api/get-single-product/${productId}`, "GET");
       setProduct(response.data.product);
+      setIncludes(response.data.include);
     } catch (error) {
       console.error("Error fetching product details:", error);
     } finally {
@@ -30,13 +32,13 @@ function ProductDetails() {
 
   // Fetch product details when component mounts or productId changes
   useEffect(() => {
-    fetchProduct()
+    fetchProduct();
   }, []);
 
   return (
     <>
       {loading ? (
-        <div className="All_Product_loader">
+        <div className="product_Details_All_Product_loader">
           <div className='d-flex justify-content-center align-items-center' style={{ height: "100vh" }}>
             <PrimaryLoader />
           </div>
@@ -50,7 +52,7 @@ function ProductDetails() {
                 width="26"
                 height="36"
                 fill="currentColor"
-                className="bi bi-arrow-left back_arrow_icon"
+                className="product_Details_back_arrow_icon"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -62,9 +64,9 @@ function ProductDetails() {
           </div>
           {product && (
             <div>
-              <div className="productDisplay">
-                <div className="product-display-left">
-                  <div className="productdisplay-img-list">
+              <div className="product_Details_productDisplay">
+                <div className="product_Details_product-display-left">
+                  <div className="product_Details_productdisplay-img-list">
                     {product.image.map((item, i) => (
                       <div className='d-flex justify-content-center align-items-center' key={i}>
                         <img
@@ -76,40 +78,76 @@ function ProductDetails() {
                       </div>
                     ))}
                   </div>
-                  <div className="productdisplay-img">
+                  <div className="product_Details_productdisplay-img">
                     <img
                       src={selectedImage || product.thumbnail}
                       alt=""
-                      className="productdisplay-main-img"
+                      className="product_Details_productdisplay-main-img"
                     />
                   </div>
                 </div>
-                <div className="product-display-right">
+                <div className="product_Details_product-display-right">
                   <div>
-                    <Link to={`/admin/product-update/${productId}`} target='_blank' >
-                      <div className='btn btn-success' >Edit
-                      </div>
+                    <Link to={`/admin/product-update/${productId}`} target='_blank'>
+                      <div className='btn btn-success'>Edit</div>
                     </Link>
                   </div>
-                  <h1>{product.name}</h1>
-                  <h2>{product.subTitle}</h2>
-                  <p>{product.description}</p>
-                  <p><strong>Price:</strong> ₹{product.price}</p>
-                  <p><strong>Price After Discount:</strong> ₹{product.PriceAfterDiscount}</p>
-                  <p><strong>Discount Percentage:</strong> {product.discountPercentage}%</p>
-                  <p><strong>Quantity:</strong> {product.quantity}</p>
-                  <p><strong>Category:</strong> {product.category.name}</p>
-                  <p><strong>Brand:</strong> {product.brand}</p>
-                  <p><strong>Thumbnail:</strong> <img src={product.thumbnail} alt="Thumbnail" style={{ maxWidth: '100px' }} /></p>
-                  <p><strong>Images:</strong></p>
-                  <div className="product-images">
-                    {product.image.map((img, index) => (
-                      <img key={index} src={img} alt={`Product Image ${index + 1}`} style={{ maxWidth: '100px', marginRight: '10px' }} />
-                    ))}
+
+                  <div className="product_Details_section">
+                    <h1 className="product_Details_section-title">{product.name}</h1>
+                    <h2>{product.subTitle}</h2>
                   </div>
-                  <p><strong>Sizes:</strong> {product.Size.join(", ")}</p>
-                  <p><strong>Is Out Of Stock:</strong> {product.IsOutOfStock}</p>
-                  <p><strong>Tax:</strong> {product.Tax * 100}%</p>
+
+                  <div className="product_Details_section">
+                    <h2 className="product_Details_section-title">Description</h2>
+                    <p>{product.description}</p>
+                  </div>
+
+                  <div className="product_Details_section">
+                    <h2 className="product_Details_section-title">Price</h2>
+                    <p><strong>Price:</strong> ₹{product.price}</p>
+                    <p><strong>Price After Discount:</strong> ₹{product.PriceAfterDiscount}</p>
+                    <p><strong>Discount Percentage:</strong> {product.discountPercentage}%</p>
+                  </div>
+
+                  <div className="product_Details_section">
+                    <h2 className="product_Details_section-title">Stock</h2>
+                    <p><strong>Quantity:</strong> {product.quantity}</p>
+                    <p><strong>Is Out Of Stock:</strong> {product.IsOutOfStock ? "Yes" : "No"}</p>
+                  </div>
+
+                  <div className="product_Details_section">
+                    <h2 className="product_Details_section-title">Images</h2>
+                    <div className="product_Details_product-images">
+                      {product.image.map((img, index) => (
+                        <img key={index} src={img} alt={`Product Image ${index + 1}`} />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* <div className="product_Details_section">
+                    <h2 className="product_Details_section-title">Sizes</h2>
+                    <p>{product.Size.join(", ")}</p>
+                  </div> */}
+
+                  <div className="product_Details_section">
+                    <h2 className="product_Details_section-title">Brand</h2>
+                    <p><strong>Brand:</strong> {product.brand}</p>
+                  </div>
+                  {/* 
+                  <div className="product_Details_section">
+                    <h2 className="product_Details_section-title">Tax</h2>
+                    <p><strong>Tax:</strong> {product.Tax * 100}%</p>
+                  </div> */}
+
+                  <div className="product_Details_section">
+                    <h2 className="product_Details_section-title">Includes</h2>
+                    <ul>
+                      {includes.map((item, index) => (
+                        <li key={index}>{item.include}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

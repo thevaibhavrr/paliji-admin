@@ -14,7 +14,7 @@ const Allproduct = () => {
   const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [stockQuery, setStockQuery] = useState("");
-  const [ResultPerPage, setResultPerPage] = useState(30);
+  const [ResultPerPage, setResultPerPage] = useState(30000);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [toalProduct, setToalProduct] = useState(0);
@@ -28,9 +28,10 @@ const Allproduct = () => {
           `/api/get-all-products-for-admin?name=${searchQuery}&IsOutOfStock=${stockQuery}&page=${currentPage}&perPage=${ResultPerPage}&category=${category}&productType=${productType}`,
           "GET"
         );
-        console.log(response);
+        console.log(response.data.products.length);
         setProducts(response.data.products);
         setToalProduct(response.data.totalProducts);
+
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {

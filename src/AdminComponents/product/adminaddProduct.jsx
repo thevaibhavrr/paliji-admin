@@ -12,19 +12,25 @@ function AdminaddProduct() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [discountPercentage, setDiscountPercentage] = useState("0");
+  const [discountPercentage, setDiscountPercentage] = useState(0);
   const [quantity, setQuantity] = useState("");
   const [images, setImages] = useState([{}]);
   const [thumbnail, setThumbnail] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
   const [size, setSize] = useState("");
+  const [newDeliverable, setNewDeliverable] = useState("");
+  const [deliverables, setDeliverables] = useState([]);
+  console.log(deliverables);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // if (!name || !price || !quantity || !category || !brand || !thumbnail || !images ) {
     //   toast.error('Please fill all required fields');
     //   return;
     // }
+    console.log(deliverables);
     const requiredFields = [];
     if (!name) {
       requiredFields.push("Name");
@@ -63,6 +69,7 @@ function AdminaddProduct() {
         category,
         brand,
         size,
+        deliverables
       });
       setName("");
       setDescription("");
@@ -74,6 +81,7 @@ function AdminaddProduct() {
       setCategory("");
       setBrand("");
       setSize("");
+      setDeliverables([]);
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -174,6 +182,23 @@ function AdminaddProduct() {
     }
   };
 
+  // include
+  const handleAddDeliverable = () => {
+    setDeliverables([...deliverables, '']);
+  };
+
+  const handleRemoveDeliverable = (index) => {
+    const newDeliverables = deliverables.filter((_, i) => i !== index);
+    setDeliverables(newDeliverables);
+  };
+
+  const handleDeliverableChange = (e, index) => {
+    const newDeliverables = [...deliverables];
+    newDeliverables[index] = e.target.value;
+    setDeliverables(newDeliverables);
+  };
+
+
   return (
     <div>
       <div className="add-product-container">
@@ -199,6 +224,21 @@ function AdminaddProduct() {
           <ToastContainer />
         </div>
         <form onSubmit={handleSubmit}>
+          <div className='form_group'>
+            <label className='form_label'>Includes:</label>
+            {deliverables.map((deliverable, index) => (
+              <div key={index} className='form_nested_group'>
+                <input type="text" value={deliverable} className='form_nested_input' placeholder="Include" onChange={(e) => handleDeliverableChange(e, index)} />
+                <button type="button" className='form_nested_button btn btn-danger ms-2' onClick={() => handleRemoveDeliverable(index)}>
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button type="button" className="admin_add_product_button add_product_page_button m-3"
+              style={{ width: "200px" }} onClick={handleAddDeliverable}>
+              Add Include
+            </button>
+          </div>
           <input
             type="text"
             className="add_product_input_filed"
