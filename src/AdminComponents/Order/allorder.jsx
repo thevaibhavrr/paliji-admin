@@ -94,7 +94,7 @@ function AllOrder() {
                   <div className="order_details all_order_details">
                     <div><b>Order Id:</b> {order?._id}</div>
                     <div><b>Status:</b> {order?.status}</div>
-                    <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div>
+                    {/* <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div> */}
                   </div>
                   <div className="all_order_shippingAddress all_order_details">
                     <div><b>Pincode:</b> {order?.shippingAddress?.pincode}</div>
@@ -106,9 +106,10 @@ function AllOrder() {
                     <div><b>Created At:</b> {new Date(order?.createdAt).toLocaleString("en-US", { timeZone: "UTC" })}</div>
                   </div>
                   <div className="all_order_price_details all_order_details">
-                    <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div>
-                    <div><b>Shipping Price:</b> {order?.CartId?.shippingPrice}</div>
-                    <div><b>Tax Price:</b> {order?.CartId?.taxPrice}</div>
+                    {/* <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div> */}
+                    <div><b>Total Price:</b> ₹{order?.CartId?.TotalProductPrice}</div>
+                    <div><b>Shipping Price:</b> ₹{order?.CartId?.shippingPrice}</div>
+                    {/* <div><b>Tax Price:</b> {order?.CartId?.taxPrice}</div> */}
                   </div>
                 </div>
                   <div className="all_order_buttons_div">

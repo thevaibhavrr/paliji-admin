@@ -162,13 +162,13 @@ function Orderdetails() {
                   <b>Payment Method:</b> {order?.paymentMethod}
                 </p>
                 <p>
-                  <b>Total Price:</b> {order?.CartId?.totalPrice}
+                  <b>Total Price:</b> ₹{order?.CartId?.TotalProductPrice}
                 </p>
-                <p>
+                {/* <p>
                   <b>Tax Price:</b> {order?.CartId?.taxPrice}
-                </p>
+                </p> */}
                 <p>
-                  <b>Shipping Price:</b> {order?.CartId?.shippingPrice}
+                  <b>Shipping Price:</b> ₹{order?.CartId?.shippingPrice}
                 </p>
                 <p>
                   <b>Is Paid:</b> {order?.isPaid ? "Yes" : "No"}
@@ -209,13 +209,13 @@ function Orderdetails() {
                       <b>Name:</b> {item?.productId?.name}
                     </p>
                     <p>
-                      <b>Price:</b> {item?.productId?.price}
+                      <b>Price:</b> ₹{item?.productId?.price}
                     </p>
                     <p>
                       <b>Quantity:</b> {item?.quantity}
                     </p>
                     <p>
-                      <b>Total Price:</b> {item?.totalPrice}
+                      <b>Total Price:</b> ₹{item?.totalPrice}
                     </p>
                     <p>
                       <b>Brand:</b> {item?.productId?.brand}
